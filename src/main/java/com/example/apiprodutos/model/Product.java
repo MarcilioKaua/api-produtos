@@ -1,16 +1,31 @@
 package com.example.apiprodutos.model;
 
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Produtos {
+@Entity
+@Table(name = "tb_product")
+public class Product {
 
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(length = 60)
     private String name;
+    @NotNull
+    @Column(length = 25)
     private Double price;
+    @NotNull
+    @Column(length = 30)
     private int quantity;
+    @Column(length = 300)
     private String description;
 
-    public Produtos(Long id, String name, Double price, int quantity, String description) {
+    public Product(Long id, String name, Double price, int quantity, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -62,7 +77,7 @@ public class Produtos {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Produtos produtos = (Produtos) o;
+        Product produtos = (Product) o;
         return quantity == produtos.quantity && id.equals(produtos.id) && Objects.equals(name, produtos.name) && Objects.equals(price, produtos.price) && Objects.equals(description, produtos.description);
     }
 
