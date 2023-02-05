@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class JWTObject {
-    private String subject; //nome do usuario
-    private Date issuedAt; //data de criação do token
-    private Date expiration; // data de expiração do token
-    private List<String> roles; //perfis de acesso
+    private String subject;
+    private Date issuedAt;
+    private Date expiration;
+    private List<String> roles;
 
     public String getSubject() {
         return subject;
