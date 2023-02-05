@@ -5,7 +5,6 @@ import com.example.apiprodutos.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,6 +33,9 @@ public class ProductController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> updateProduct(@Valid @PathVariable Long id, @RequestBody Product product){
+        if (!productRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
         product.setId(id);
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.save(product));
     }

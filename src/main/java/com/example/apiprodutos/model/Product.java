@@ -10,6 +10,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_product")
     private Long id;
     @NotEmpty
     @Size(max = 65)
