@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -26,12 +28,12 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Object> saveProduct(@RequestBody Product product){
+    public ResponseEntity<Object> saveProduct(@Valid @RequestBody Product product){
         return ResponseEntity.status(HttpStatus.CREATED).body(productRepository.save(product));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateProduct(@PathVariable Long id, @RequestBody Product product){
+    public ResponseEntity<Object> updateProduct(@Valid @PathVariable Long id, @RequestBody Product product){
         product.setId(id);
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.save(product));
     }

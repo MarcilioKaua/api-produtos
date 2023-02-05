@@ -1,8 +1,7 @@
 package com.example.apiprodutos.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
@@ -10,19 +9,18 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @Column(length = 60)
+    @NotEmpty
+    @Size(max = 65)
     private String name;
     @NotNull
-    @Column(length = 25)
+    @Max(100000000)
     private Double price;
     @NotNull
-    @Column(length = 30)
+    @Max(100000000)
     private int quantity;
-    @Column(length = 300)
+    @Size(max = 350)
     private String description;
 
     public Product(){
