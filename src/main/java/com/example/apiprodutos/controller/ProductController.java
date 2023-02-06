@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -22,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findProductById(@PathVariable Long id){
+    public ResponseEntity<Object> findProductById(@PathVariable UUID id){
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.findById(id));
     }
 
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateProduct(@Valid @PathVariable Long id, @RequestBody Product product){
+    public ResponseEntity<Object> updateProduct(@Valid @PathVariable UUID id, @RequestBody Product product){
         if (!productRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
@@ -41,7 +42,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable UUID id){
         productRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Product Deleted");
     }

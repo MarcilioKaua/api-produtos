@@ -1,17 +1,22 @@
 package com.example.apiprodutos.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class Product implements Serializable {
+    private final static long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @NotEmpty
     @Size(max = 65)
     private String name;
@@ -27,7 +32,7 @@ public class Product {
     public Product(){
     }
 
-    public Product(Long id, String name, Double price, int quantity, String description) {
+    public Product(UUID id, String name, Double price, int quantity, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,11 +40,11 @@ public class Product {
         this.description = description;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

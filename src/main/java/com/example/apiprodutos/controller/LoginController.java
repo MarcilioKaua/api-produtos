@@ -29,7 +29,7 @@ public class LoginController {
         if(user!=null) {
             boolean passwordOk =  encoder.matches(login.getPassword(), user.getPassword());
             if (!passwordOk) {
-                throw new RuntimeException("Invalid password by login: " + login.getUsername());
+                throw new RuntimeException("Invalid password for login: " + login.getUsername());
             }
             Sessao sessao = new Sessao();
             sessao.setLogin(user.getUsername());

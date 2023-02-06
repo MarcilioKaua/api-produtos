@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findProductById(@PathVariable Long id){
+    public ResponseEntity<Object> findProductById(@PathVariable UUID id){
         return ResponseEntity.status(HttpStatus.OK).body(userRepository.findById(id));
     }
 
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateProduct(@Valid @PathVariable Long id, @RequestBody User user){
+    public ResponseEntity<Object> updateProduct(@Valid @PathVariable UUID id, @RequestBody User user){
         if (!userRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable UUID id){
         userRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("User Deleted");
     }
