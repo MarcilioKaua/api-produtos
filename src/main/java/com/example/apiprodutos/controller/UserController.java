@@ -49,7 +49,7 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable Long id){
         userRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Product Deleted");
+        return ResponseEntity.status(HttpStatus.OK).body("User Deleted");
     }
 }
 
